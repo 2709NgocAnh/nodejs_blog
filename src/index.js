@@ -3,11 +3,13 @@ const morgan = require("morgan");
 var path = require("path");
 const handlebars = require("express-handlebars");
 const app = express();
+const db = require("../src/config/db");
 
 const routes = require("./routes");
 
 const port = 3000;
-
+//Connect db
+db.connect();
 //static file img
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -27,5 +29,5 @@ app.set("views", path.join(__dirname, "resources/views"));
 routes(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
